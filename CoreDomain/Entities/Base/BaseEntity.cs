@@ -4,8 +4,8 @@
     {
         public Guid Id { get; set; }
         public DateTime CreatedAt { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid CreatedFrom { get; set; }
+        public Guid? CreatedBy { get; set; }
+        public Guid? CreatedFromSource { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public Guid? UpdatedBy { get; set; }
         public Guid? UpdateReason { get; set; }
