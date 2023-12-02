@@ -1,10 +1,19 @@
 ﻿using CoreApi.Models.Auth;
 using Microsoft.AspNetCore.Mvc;
+using CoreService;
+using CoreService.Authentication;
 
 namespace CoreApi.Controllers
 {
     public class AuthController : Controller
     {
+        protected readonly AuthService _authService;
+
+        public AuthController(AuthService authService)
+        {
+            _authService = authService;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel registerModel)
         {
@@ -12,9 +21,9 @@ namespace CoreApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel loginModel)
+        public async Task<AuthenticationDetails> Login(LoginModel loginModel)
         {
-            throw new NotImplementedException();
+            return await _authService.Authenticate(loginModel.UserName, loginModel.Password);
         }
 
         [HttpPost]
